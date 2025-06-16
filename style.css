@@ -1,0 +1,220 @@
+html, body { /* เพิ่ม html เพื่อให้ min-height 100vh ทำงานได้ถูกต้องในบาง browser */
+  height: 100%; /* ให้ body มีความสูงเต็มที่ */
+  margin: 0;
+  overflow: hidden; /* ป้องกัน scrollbar จาก shapes */
+}
+
+body {
+  font-family: 'Kanit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /*font-family: 'Arial', sans-serif;*/
+  /*margin: 0;*/
+  padding: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+
+  /* --- เพิ่มเติมสำหรับการจัดกลางแนวตั้ง --- */
+  display: flex;
+  justify-content: center; /* จัด content ให้อยู่กลางแนวตั้ง */
+  align-items: center; /* จัด content ให้อยู่กลางแนวนอน (สำหรับ flex items) */
+  min-height: 100vh; /* ให้ body มีความสูงอย่างน้อยเท่ากับ viewport */
+  box-sizing: border-box; /* ทำให้ padding ไม่ถูกนับรวมใน min-height */
+  padding: 20px; /* ย้าย padding มาที่ body */
+  /*flex-direction: column; /* เรียง content จากบนลงล่าง */     */      
+}
+
+/* สไตล์สำหรับเนื้อหาหลักของหน้า */
+.main-content {
+  /* เพิ่ม flexbox เพื่อจัดเรียงเนื้อหาภายใน main-content จากบนลงล่าง */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* จัดเนื้อหาให้อยู่กลางแนวนอนภายใน main-content */
+  max-width: 900px; /* กำหนด max-width ให้ content หลัก */
+  width: 100%; /* ทำให้ content ใช้พื้นที่เต็มตาม max-width */
+  z-index: 1; /* ให้เนื้อหาอยู่ด้านบน shapes */
+  position: relative; /* เพื่อให้ z-index ทำงาน */
+}    
+
+.header-title {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.header-title .personal {
+  color: #FF69B4; /* ชมพู */
+}
+
+.header-title .website {
+  color: #87CEEB; /* ฟ้า */
+}
+
+.description {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  max-width: 800px;
+  color: #fff;
+  /*margin-left: auto;
+  margin-right: auto;*/
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap; /* ให้ปุ่มขึ้นบรรทัดใหม่บนจอเล็ก */
+  justify-content: center;
+  align-items: center;
+  gap: 30px; /* ระยะห่างระหว่างปุ่ม */
+  margin-top: 30px;
+  max-width: 600px; /* หรือกำหนด max-width ให้เหมาะสม */
+}
+
+.circle-button {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px; /* เพิ่ม padding ภายในปุ่ม */
+  box-sizing: border-box; /* ทำให้ padding ไม่ขยายขนาดปุ่ม */
+}
+
+.circle-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.circle-button img {
+  width: 60%; /* ปรับขนาดรูปภาพให้เล็กลง */
+  height: auto;
+  max-height: 100px; /* กำหนดความสูงสูงสุดของรูป */
+  margin-bottom: 10px;
+  object-fit: contain; /* ปรับการแสดงผลรูปภาพ */
+}
+
+.circle-button .button-text {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #32cd32;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 2em;
+  }
+  .circle-button {
+    width: 160px;
+    height: 160px;
+  }
+  .circle-button img {
+    max-height: 80px;
+  }
+  .circle-button .button-text {
+    font-size: 1em;
+  }
+  .button-container {
+    gap: 20px;
+    max-width: 400px; /* ปรับ max-width ของ button container สำหรับจอขนาดกลาง */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px; /* ลด padding บน body สำหรับจอเล็ก */
+  }
+  .header-title {
+    font-size: 1.8em;
+  }
+  .description {
+    font-size: 0.9em;
+  }
+  .circle-button {
+    width: 140px;
+    height: 140px;
+  }
+   .circle-button img {
+    max-height: 70px;
+  }
+  .circle-button .button-text {
+    font-size: 0.9em;
+  }
+  .button-container {
+    flex-direction: column; /* ปุ่มเรียงต่อกันแนวตั้งบนจอเล็กมาก */
+    gap: 25px;
+  }
+}
+
+/* start shape */
+.container{
+  height: 100%;
+  width: 100%;
+  position: absolute; /* ให้อยู่ด้านหลังเนื้อหา */
+  top: 0;
+  left: 0;
+  z-index: 0; /* ให้อยู่ด้านหลังเนื้อหา */
+  background: linear-gradient(10deg, #a566e4, #8641da, #7a77e7, #3a52ec); /* ย้าย background จาก body มาที่ container */
+}
+
+.shapes{
+  height: 100%;
+  width: 100%;
+  list-style: none; /* เอา bullet point ออก */
+}
+
+.shapes li{
+  height: 20px;
+  width: 20px;
+  background-color: #c970db;
+  border-radius: 20%;
+  position: absolute;
+  display: block;
+  bottom: -120px;
+  /*z-index: -1;*/
+  animation: animate 8s linear infinite;
+}
+
+.shapes li:nth-child(even) {
+  left: calc(70px*var(--i));
+  width: calc(4px*(21 - var(--i)));
+  height: calc(4px*(21 - var(--i)));
+  animation-delay: calc(3s*var(--i));
+  animation-duration: calc(1.1s*var(--i) + 9s);
+}
+
+.shapes li:nth-child(odd) {
+  left: calc(75px*var(--i));
+  animation-delay: calc(1.2s*var(--i));
+  animation-duration: calc(2s*var(--i) + 6s);
+}
+
+.shapes li:nth-child(3n) {
+  width: calc(5px*var(--i) + 20px);
+  height: calc(5px*var(--i) + 20px);
+  animation-delay: calc(1.2s*(21 - var(--i)));
+  animation-duration: calc(1.6s*(21-var(--i)) + 4s);
+}
+
+.shapes li:not(:nth-child(3n)) {
+  height: calc(6px*(21 - var(--i)));
+  width: calc(6px*(21 - var(--i)));
+  animation-duration: calc(1.2s*var(-i) + 8s);
+}
+
+@keyframes animate{
+  0%{
+    transform: translateY(0px) rotate(0deg);
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(-1000px) rotate(360deg);
+    opacity: 0;
+  }
+}
